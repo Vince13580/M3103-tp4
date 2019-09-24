@@ -1,0 +1,38 @@
+#ifndef CRDTREE_H
+#define CRDTREE_H
+#include <iostream>
+#include <memory>
+
+#include "node.hpp"
+
+
+template <typename T>
+class CRDTree
+{
+private:
+    std::shared_ptr<CNode<T>> m_Root;
+
+public:
+    CRDTree (const T & Val){
+        std::shared_ptr<CNode <T>> tmp (new CNode<T> (Val));
+            m_Root = tmp;
+    }
+    ~CRDTree () {}
+
+
+    void Show () const;
+    std::shared_ptr<CNode<T>> Find (const T & val) const;
+
+    void AddAfter (const std::shared_ptr<CNode<T>> &, const T & val);
+    void AddBefore (const std::shared_ptr<CNode<T>> &, const T & val);
+    void Remove (std::shared_ptr<CNode<T>>&);
+
+    //const std::shared_ptr<CNode<T>> & Begin () const;
+
+    void push_front (const T & val);
+    void push_back  (const T & val);
+};
+
+
+
+#endif // CRDTREE_H
